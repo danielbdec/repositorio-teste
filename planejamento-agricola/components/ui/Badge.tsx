@@ -15,10 +15,10 @@ const badgeVariants = cva(
                     "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
                 outline: "text-foreground",
                 // Custom Protocol Categories
-                fungicida: "border-transparent bg-purple-900/50 text-purple-200 border-purple-700 hover:bg-purple-900/70",
-                inseticida: "border-transparent bg-red-900/50 text-red-200 border-red-700 hover:bg-red-900/70",
-                herbicida: "border-transparent bg-yellow-900/50 text-yellow-200 border-yellow-700 hover:bg-yellow-900/70",
-                nutricao: "border-transparent bg-green-900/50 text-green-200 border-green-700 hover:bg-green-900/70",
+                fungicida: "border-transparent bg-purple-100 text-purple-900 border-purple-200 hover:bg-purple-200 dark:bg-purple-900/50 dark:text-purple-200 dark:border-purple-700 dark:hover:bg-purple-900/70",
+                inseticida: "border-transparent bg-red-100 text-red-900 border-red-200 hover:bg-red-200 dark:bg-red-900/50 dark:text-red-200 dark:border-red-700 dark:hover:bg-red-900/70",
+                herbicida: "border-transparent bg-yellow-100 text-yellow-900 border-yellow-200 hover:bg-yellow-200 dark:bg-yellow-900/50 dark:text-yellow-200 dark:border-yellow-700 dark:hover:bg-yellow-900/70",
+                nutricao: "border-transparent bg-agri-green-100 text-agri-green-900 border-agri-green-200 hover:bg-agri-green-200 dark:bg-agri-green-900/50 dark:text-agri-green-100 dark:border-agri-green-700 dark:hover:bg-agri-green-900/70",
             },
         },
         defaultVariants: {

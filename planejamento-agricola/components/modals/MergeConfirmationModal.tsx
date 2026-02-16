@@ -37,36 +37,36 @@ export function MergeConfirmationModal({ isOpen, onClose, onConfirm, targetEvent
 
     return (
         <div className={`fixed inset-0 z-[100] flex items-center justify-center ${isOpen ? '' : 'hidden'}`}>
-            <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={onClose} />
+            <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
 
-            <div className="relative bg-slate-900 border border-white/10 rounded-2xl shadow-2xl w-full max-w-md p-6 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="relative bg-card border border-border rounded-2xl shadow-2xl w-full max-w-md p-6 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
                     <div className="p-3 bg-agri-gold-500/10 rounded-xl border border-agri-gold-500/20 text-agri-gold-500">
                         <Layers size={24} />
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-white">Criar Operação Única?</h3>
-                        <p className="text-sm text-slate-400">Consolidar protocolos em uma entrada.</p>
+                        <h3 className="text-xl font-bold text-foreground">Criar Operação Única?</h3>
+                        <p className="text-sm text-muted-foreground">Consolidar protocolos em uma entrada.</p>
                     </div>
                 </div>
 
                 {/* Visualização da Fusão */}
-                <div className="flex items-center justify-between gap-2 mb-6 p-4 bg-slate-950/50 rounded-xl border border-white/5">
+                <div className="flex items-center justify-between gap-2 mb-6 p-4 bg-muted/50 rounded-xl border border-border">
                     {/* Source */}
                     <div className="flex-1 min-w-0">
-                        <div className="text-xs text-slate-500 mb-1">Arrastado</div>
-                        <div className="font-semibold text-slate-200 truncate">{sourceEvent.protocols[0].name}</div>
-                        <div className="text-[10px] text-slate-400">{sourceEvent.protocols.length} item(s)</div>
+                        <div className="text-xs text-muted-foreground mb-1">Arrastado</div>
+                        <div className="font-semibold text-foreground truncate">{sourceEvent.protocols[0].name}</div>
+                        <div className="text-[10px] text-muted-foreground">{sourceEvent.protocols.length} item(s)</div>
                     </div>
 
-                    <ArrowRight className="text-slate-600" size={16} />
+                    <ArrowRight className="text-muted-foreground" size={16} />
 
                     {/* Target */}
                     <div className="flex-1 min-w-0 text-right">
-                        <div className="text-xs text-slate-500 mb-1">Alvo</div>
-                        <div className="font-semibold text-slate-200 truncate">{targetEvent.protocols[0].name}</div>
-                        <div className="text-[10px] text-slate-400">{targetEvent.protocols.length} item(s)</div>
+                        <div className="text-xs text-muted-foreground mb-1">Alvo</div>
+                        <div className="font-semibold text-foreground truncate">{targetEvent.protocols[0].name}</div>
+                        <div className="text-[10px] text-muted-foreground">{targetEvent.protocols.length} item(s)</div>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@ export function MergeConfirmationModal({ isOpen, onClose, onConfirm, targetEvent
                 )}
 
                 {/* Footer Actions */}
-                <div className="flex gap-3 pt-4 border-t border-white/5">
+                <div className="flex gap-3 pt-4 border-t border-border">
                     <Button variant="ghost" onClick={onClose} className="flex-1">
                         Cancelar
                     </Button>

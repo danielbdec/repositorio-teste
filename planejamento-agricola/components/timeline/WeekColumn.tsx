@@ -42,17 +42,17 @@ export function WeekColumn({ weekIndex, operationType, events, isOverlay, onEdit
         <div
             ref={setNodeRef}
             className={cn(
-                "min-h-[120px] p-2 border-r border-border/20 transition-colors relative",
+                "min-h-[120px] p-2 border-r border-border/60 dark:border-border/20 transition-colors relative",
                 // Vertical phase indicator (left border)
                 phaseColors && stage?.phase === 'REPRODUTIVA'
                     ? "border-l-2 border-l-amber-500/20"
-                    : "border-l-2 border-l-green-500/10",
+                    : "border-l-2 border-l-agri-green-500/20",
                 // Valid Drop Styling
                 isOver && !isLocked && isDropValid && "bg-agri-green-500/10 border-agri-green-500/50",
                 // Invalid Drop Styling
-                isOver && !isLocked && !isDropValid && "bg-red-500/10 border-red-500/50 cursor-not-allowed",
+                isOver && !isLocked && !isDropValid && "bg-destructive/10 border-destructive/50 cursor-not-allowed",
                 // Locked styling
-                isLocked && "bg-slate-950/40 border-slate-800/50 cursor-not-allowed",
+                isLocked && "bg-muted/40 border-muted/50 cursor-not-allowed",
             )}
         >
             {/* Indicador visual de Semana */}
@@ -63,7 +63,7 @@ export function WeekColumn({ weekIndex, operationType, events, isOverlay, onEdit
             {/* Lock Indicator */}
             {isLocked && (
                 <div className="absolute inset-0 flex items-center justify-center z-0 opacity-10 pointer-events-none">
-                    <Lock size={32} className="text-slate-500" />
+                    <Lock size={32} className="text-muted-foreground" />
                 </div>
             )}
 

@@ -45,16 +45,17 @@ export function PremiumCard({
             stiffness: 120, // Solid feel
             damping: 25,    // No bounce
             mass: 1
-        }
+        } as const
     };
 
     return (
         <motion.div
             {...motionProps}
             className={cn(
-                "group relative rounded-xl border border-white/5 bg-slate-950/40 transition-all duration-500",
-                "backdrop-blur-md shadow-lg shadow-black/20", // Deep glass
-                hoverEffect && "hover:border-white/10 hover:bg-slate-900/50 hover:shadow-xl hover:shadow-black/30",
+                "group relative rounded-xl border border-border transition-all duration-500",
+                "bg-white/70 dark:bg-card/40", // Light: High opacity white | Dark: Glass
+                "backdrop-blur-md shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] dark:shadow-black/20", // Light: Soft clean shadow
+                hoverEffect && "hover:border-border/80 hover:bg-white/90 dark:hover:bg-accent/50 hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 dark:hover:translate-y-0 dark:hover:shadow-black/30",
                 className
             )}
             onMouseMove={handleMouseMove}

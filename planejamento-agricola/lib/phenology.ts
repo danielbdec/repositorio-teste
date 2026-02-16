@@ -21,20 +21,20 @@ export interface PhenologicalStage {
 }
 
 export const PHENOLOGY_STAGES: PhenologicalStage[] = [
-    { id: 'VE', label: 'VE', fullLabel: 'Emergência', weekOffset: 0, dae: 0, phase: 'VEGETATIVA', color: 'text-green-300' },
-    { id: 'V1', label: 'V1', fullLabel: 'Primeiro Nó', weekOffset: 1, dae: 7, phase: 'VEGETATIVA', color: 'text-green-400' },
-    { id: 'V2', label: 'V2', fullLabel: 'Segundo Nó', weekOffset: 2, dae: 14, phase: 'VEGETATIVA', color: 'text-green-400' },
-    { id: 'V4', label: 'V4', fullLabel: 'Quarto Nó', weekOffset: 3, dae: 21, phase: 'VEGETATIVA', color: 'text-green-500' },
-    { id: 'V6', label: 'V6', fullLabel: 'Sexto Nó', weekOffset: 4, dae: 28, phase: 'VEGETATIVA', color: 'text-green-500' },
-    { id: 'V8', label: 'V8', fullLabel: 'Oitavo Nó', weekOffset: 5, dae: 35, phase: 'VEGETATIVA', color: 'text-green-600' },
-    { id: 'R1', label: 'R1', fullLabel: 'Início Floração', weekOffset: 6, dae: 42, phase: 'REPRODUTIVA', color: 'text-amber-400' },
-    { id: 'R2', label: 'R2', fullLabel: 'Floração Plena', weekOffset: 7, dae: 49, phase: 'REPRODUTIVA', color: 'text-amber-400' },
-    { id: 'R3', label: 'R3', fullLabel: 'Início Vagem', weekOffset: 8, dae: 56, phase: 'REPRODUTIVA', color: 'text-amber-500' },
-    { id: 'R4', label: 'R4', fullLabel: 'Vagem Plena', weekOffset: 9, dae: 63, phase: 'REPRODUTIVA', color: 'text-amber-500' },
-    { id: 'R5', label: 'R5', fullLabel: 'Enchimento Grão', weekOffset: 10, dae: 70, phase: 'REPRODUTIVA', color: 'text-orange-400' },
+    { id: 'VE', label: 'VE', fullLabel: 'Emergência', weekOffset: 0, dae: 0, phase: 'VEGETATIVA', color: 'text-agri-green-600 dark:text-agri-green-400' },
+    { id: 'V1', label: 'V1', fullLabel: 'Primeiro Nó', weekOffset: 1, dae: 7, phase: 'VEGETATIVA', color: 'text-agri-green-600 dark:text-agri-green-400' },
+    { id: 'V2', label: 'V2', fullLabel: 'Segundo Nó', weekOffset: 2, dae: 14, phase: 'VEGETATIVA', color: 'text-agri-green-600 dark:text-agri-green-400' },
+    { id: 'V4', label: 'V4', fullLabel: 'Quarto Nó', weekOffset: 3, dae: 21, phase: 'VEGETATIVA', color: 'text-agri-green-600 dark:text-agri-green-400' },
+    { id: 'V6', label: 'V6', fullLabel: 'Sexto Nó', weekOffset: 4, dae: 28, phase: 'VEGETATIVA', color: 'text-agri-green-600 dark:text-agri-green-400' },
+    { id: 'V8', label: 'V8', fullLabel: 'Oitavo Nó', weekOffset: 5, dae: 35, phase: 'VEGETATIVA', color: 'text-agri-green-600 dark:text-agri-green-400' },
+    { id: 'R1', label: 'R1', fullLabel: 'Início Floração', weekOffset: 6, dae: 42, phase: 'REPRODUTIVA', color: 'text-agri-gold-600 dark:text-agri-gold-400' },
+    { id: 'R2', label: 'R2', fullLabel: 'Floração Plena', weekOffset: 7, dae: 49, phase: 'REPRODUTIVA', color: 'text-agri-gold-600 dark:text-agri-gold-400' },
+    { id: 'R3', label: 'R3', fullLabel: 'Início Vagem', weekOffset: 8, dae: 56, phase: 'REPRODUTIVA', color: 'text-agri-gold-600 dark:text-agri-gold-400' },
+    { id: 'R4', label: 'R4', fullLabel: 'Vagem Plena', weekOffset: 9, dae: 63, phase: 'REPRODUTIVA', color: 'text-agri-gold-600 dark:text-agri-gold-400' },
+    { id: 'R5', label: 'R5', fullLabel: 'Enchimento Grão', weekOffset: 10, dae: 70, phase: 'REPRODUTIVA', color: 'text-orange-500' },
     { id: 'R5.5', label: 'R5.5', fullLabel: 'Enchimento Avançado', weekOffset: 12, dae: 84, phase: 'REPRODUTIVA', color: 'text-orange-500' },
     { id: 'R7', label: 'R7', fullLabel: 'Maturidade Fisiológica', weekOffset: 14, dae: 98, phase: 'REPRODUTIVA', color: 'text-orange-600' },
-    { id: 'R8', label: 'R8', fullLabel: 'Maturidade Colheita', weekOffset: 16, dae: 112, phase: 'REPRODUTIVA', color: 'text-red-400' },
+    { id: 'R8', label: 'R8', fullLabel: 'Maturidade Colheita', weekOffset: 16, dae: 112, phase: 'REPRODUTIVA', color: 'text-red-500' },
 ];
 
 /**
@@ -84,6 +84,6 @@ export function getDAE(weekIndex: number, plantingWeek: number = 0): number {
 /** Get phase color classes for Tailwind */
 export function getPhaseColors(phase: 'VEGETATIVA' | 'REPRODUTIVA') {
     return phase === 'VEGETATIVA'
-        ? { bg: 'bg-green-500', text: 'text-green-400', border: 'border-green-500/30', bgLight: 'bg-green-500/5', line: 'bg-green-500/40' }
-        : { bg: 'bg-amber-500', text: 'text-amber-500', border: 'border-amber-500/30', bgLight: 'bg-amber-500/5', line: 'bg-amber-500/40' };
+        ? { bg: 'bg-agri-green-500', text: 'text-agri-green-700 dark:text-agri-green-400', border: 'border-agri-green-500/30', bgLight: 'bg-agri-green-500/5', line: 'bg-agri-green-500/40' }
+        : { bg: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-500/30', bgLight: 'bg-amber-500/5', line: 'bg-amber-500/40' };
 }

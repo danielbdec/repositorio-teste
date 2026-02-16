@@ -49,24 +49,24 @@ export function Swimlane({ operationType, events, visibleWeeks, onEdit }: Swimla
 
 
     return (
-        <div className="relative border border-white/10 rounded-xl overflow-hidden bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-md shadow-lg mb-4">
+        <div className="relative border border-border rounded-xl overflow-hidden bg-white/50 dark:bg-card/5 backdrop-blur-md shadow-sm mb-4">
             <div className="relative group">
                 {/* Background com gradiente sutil no hover */}
                 <div
                     className="absolute inset-0 bg-gradient-to-r from-agri-green-900/0 via-agri-green-900/5 to-agri-green-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 />
 
-                <div className="flex items-stretch min-h-[50px] border-b border-white/5">
+                <div className="flex items-stretch min-h-[50px] border-b border-border">
                     {/* Header da Swimlane (Icon + Title) */}
                     <div
-                        className="w-48 flex-shrink-0 flex items-center gap-3 p-3 cursor-pointer hover:bg-white/5 transition-colors rounded-l-lg border-r border-white/5 bg-slate-950/20"
+                        className="w-48 flex-shrink-0 flex items-center gap-3 p-3 cursor-pointer hover:bg-accent/5 transition-colors rounded-l-lg border-r border-border bg-muted/20"
                         onClick={() => setIsExpanded(!isExpanded)}
                     >
-                        {isExpanded ? <ChevronDown size={16} className="text-slate-500" /> : <ChevronRight size={16} className="text-slate-500" />}
-                        <div className="p-1.5 rounded-lg bg-agri-green-950/50 border border-agri-green-900/50 shadow-inner group-hover:border-agri-gold-500/30 transition-colors">
+                        {isExpanded ? <ChevronDown size={16} className="text-muted-foreground" /> : <ChevronRight size={16} className="text-muted-foreground" />}
+                        <div className="p-1.5 rounded-lg bg-agri-green-500/10 border border-agri-green-500/20 shadow-inner group-hover:border-agri-gold-500/30 transition-colors">
                             <Icon className="w-4 h-4 text-agri-green-500 group-hover:text-agri-gold-500 transition-colors" />
                         </div>
-                        <span className="font-bold text-xs text-slate-300 tracking-tight group-hover:text-white transition-colors uppercase">
+                        <span className="font-bold text-xs text-muted-foreground tracking-tight group-hover:text-foreground transition-colors uppercase">
                             {operationType.replace('_', ' ')}
                         </span>
                     </div>
@@ -75,13 +75,13 @@ export function Swimlane({ operationType, events, visibleWeeks, onEdit }: Swimla
                     {!isExpanded && (
                         <div className="flex items-center gap-6 text-xs text-muted-foreground animate-in fade-in slide-in-from-left-2 pl-6 py-3">
                             <div className="flex flex-col">
-                                <span className="text-[10px] uppercase text-slate-500 font-bold">Eventos</span>
-                                <span className="font-mono text-slate-300">{totalEvents}</span>
+                                <span className="text-[10px] uppercase text-muted-foreground font-bold">Eventos</span>
+                                <span className="font-mono text-muted-foreground/80">{totalEvents}</span>
                             </div>
-                            <div className="w-px h-6 bg-white/5"></div>
+                            <div className="w-px h-6 bg-border"></div>
                             <div className="flex flex-col">
-                                <span className="text-[10px] uppercase text-slate-500 font-bold">Acumulado/ha</span>
-                                <span className="font-mono text-agri-gold-400 font-bold">{formatCurrency(aggregatedCostPerHa)}</span>
+                                <span className="text-[10px] uppercase text-muted-foreground font-bold">Acumulado/ha</span>
+                                <span className="font-mono text-agri-gold-500 dark:text-agri-gold-400 font-bold">{formatCurrency(aggregatedCostPerHa)}</span>
                             </div>
 
                             {/* Badge de Alerta se custo alto (Mock) */}

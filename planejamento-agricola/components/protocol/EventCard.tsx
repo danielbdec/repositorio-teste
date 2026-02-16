@@ -70,7 +70,7 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
             case 'PLANTIO_MECANIZADO': return <Sprout size={14} className="text-agri-green-400" />;
             case 'FERTIRRIGACAO': return <Droplets size={14} className="text-blue-400" />;
             case 'COBERTURA_SOLIDA': return <Tractor size={14} className="text-amber-600" />;
-            default: return <Bug size={14} className="text-slate-400" />;
+            default: return <Bug size={14} className="text-muted-foreground" />;
         }
     };
 
@@ -82,7 +82,7 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
             case 'HERBICIDA': return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
             case 'ADUBACAO_FOLIAR': return "bg-blue-500/10 text-blue-400 border-blue-500/20";
             case 'BIOLOGICO': return "bg-lime-500/10 text-lime-400 border-lime-500/20";
-            default: return "bg-slate-500/10 text-slate-400 border-slate-500/20";
+            default: return "bg-muted/10 text-muted-foreground border-border/20";
         }
     };
 
@@ -104,7 +104,7 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
                     "touch-none mb-2 w-full",
                     // Se for o card original sendo arrastado: Opacidade baixa (Placeholder)
                     // Se for o Overlay: Opacidade total (Card flutuando)
-                    isDragging && !isOverlay && "opacity-20 grayscale border-dashed border-slate-500/50"
+                    isDragging && !isOverlay && "opacity-20 grayscale border-dashed border-muted-foreground/50"
                 )}
             >
                 <PremiumCard
@@ -124,7 +124,7 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
                         "flex items-center gap-2 px-3 py-1.5 text-[10px] font-mono border-b backdrop-blur-sm",
                         stage?.phase === 'REPRODUTIVA'
                             ? "bg-amber-500/10 border-amber-500/10 text-amber-200"
-                            : "bg-green-500/10 border-green-500/10 text-green-200"
+                            : "bg-agri-green-500/10 border-agri-green-500/10 text-agri-green-600 dark:text-agri-green-100"
                     )}>
                         <span className="font-bold tracking-wider">DAE {dae > 0 ? dae : '—'}</span>
                         <span className="opacity-30">|</span>
@@ -144,38 +144,38 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
 
                             <div className="flex items-center gap-2">
                                 {onEdit && (
-                                    <button className="text-slate-500 hover:text-white transition-colors p-1 hover:bg-white/5 rounded"
+                                    <button className="text-muted-foreground hover:text-foreground transition-colors p-1 hover:bg-accent/5 rounded"
                                         aria-label="Editar"
                                         onClick={(e: React.MouseEvent) => { e.stopPropagation(); onEdit(event); }}>
                                         <Eye size={12} />
                                     </button>
                                 )}
-                                <div className="bg-slate-950/40 p-1.5 rounded-full border border-white/5 shadow-inner">
+                                <div className="bg-card/40 p-1.5 rounded-full border border-border shadow-inner">
                                     {getApplicationIcon()}
                                 </div>
                             </div>
                         </div>
 
                         {/* Main Content */}
-                        <div className="mb-3 space-y-1">
-                            <h4 className="font-bold text-sm text-white leading-tight truncate tracking-tight" title={productSku}>
+                        <div className="mb-3 space-y-1 min-w-0">
+                            <h4 className="font-bold text-sm text-foreground leading-tight truncate tracking-tight" title={productSku}>
                                 {productSku}
                             </h4>
-                            <div className="flex items-center gap-1.5 text-xs text-slate-400">
-                                <span className="truncate max-w-[100px]" title={protocol.target}>{protocol.target}</span>
+                            <div className="flex items-center gap-1.5 text-xs text-muted-foreground min-w-0">
+                                <span className="truncate flex-1" title={protocol.target}>{protocol.target}</span>
                                 {doseLabel && (
-                                    <>
-                                        <span className="w-1 h-1 rounded-full bg-slate-600" />
-                                        <span className="font-mono text-slate-300 bg-slate-800/50 px-1 py-0.5 rounded text-[10px]">{doseLabel}</span>
-                                    </>
+                                    <div className="flex-shrink-0 flex items-center gap-1.5">
+                                        <span className="w-1 h-1 rounded-full bg-muted-foreground" />
+                                        <span className="font-mono text-foreground/80 bg-muted/50 px-1 py-0.5 rounded text-[10px] whitespace-nowrap">{doseLabel}</span>
+                                    </div>
                                 )}
                             </div>
                         </div>
 
                         {/* Footer: Custo */}
-                        <div className="pt-2 border-t border-white/5 flex justify-end items-center">
+                        <div className="pt-2 border-t border-border flex justify-end items-center">
                             <div className="flex items-baseline gap-1">
-                                <span className="text-[10px] text-slate-500 uppercase tracking-widest">Custo</span>
+                                <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Custo</span>
                                 <span className="text-sm font-bold text-gradient-gold">
                                     R$ {totalCost.toFixed(0)}
                                 </span>
