@@ -52,9 +52,11 @@ export function PremiumCard({
         <motion.div
             {...motionProps}
             className={cn(
-                "group relative rounded-xl border border-white/5 bg-slate-950/40 transition-all duration-500",
-                "backdrop-blur-md shadow-lg shadow-black/20", // Deep glass
-                hoverEffect && "hover:border-white/10 hover:bg-slate-900/50 hover:shadow-xl hover:shadow-black/30",
+                "relative rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300",
+                "hover:shadow-md hover:border-slate-300 dark:hover:border-white/20",
+                // Pure white hover in light mode (no background change)
+                "dark:hover:bg-accent/50",
+                !disableAnimation && "hover:-translate-y-[2px]",
                 className
             )}
             onMouseMove={handleMouseMove}

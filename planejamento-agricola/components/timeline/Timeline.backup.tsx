@@ -168,8 +168,7 @@ export function Timeline() {
 
 
             {/* Timeline Header Navigation */}
-            {/* Timeline Header Navigation - Control Panel Style */}
-            <div className="flex items-center justify-between bg-white dark:bg-slate-950/80 p-4 rounded-xl sticky top-2 z-40 mb-6 shadow-sm dark:shadow-2xl mx-1 backdrop-blur-sm">
+            <div className="flex items-center justify-between bg-white dark:glass-panel dark:bg-slate-900/40 p-4 rounded-xl sticky top-0 z-40 mb-2 border-b-2 border-slate-200 dark:border-white/10 shadow-md dark:shadow-none">
                 <div className="flex items-center gap-4">
                     {/* Safra Selector */}
                     <div className="flex flex-col">
@@ -234,80 +233,77 @@ export function Timeline() {
                 </Button>
             </div>
 
-            {/* Timeline Scale Container - Clean & Cohesive Block */}
-            <div className="bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 rounded-xl shadow-sm dark:shadow-2xl mx-1 mb-4 overflow-hidden backdrop-blur-sm">
-                {/* Week Headers Grid */}
-                <div className="grid grid-cols-6 gap-0 text-center pl-1 pr-2 py-3 bg-slate-50/50 dark:bg-white/5 border-b border-slate-100 dark:border-white/5">
-                    {visibleWeekIndices.map((idx, i) => (
-                        <div key={idx} className={cn(
-                            "flex flex-col items-center justify-center border-r border-slate-200 dark:border-white/5 last:border-r-0 px-2",
-                            i === 0 ? "bg-white dark:bg-transparent shadow-sm rounded-lg mx-2 border border-slate-200 dark:border-white/5 py-1" : ""
+            {/* Week Headers Grid - Stronger Presence */}
+            <div className="grid grid-cols-6 gap-0 text-center pl-1 pr-2 mb-0 bg-slate-50 dark:bg-slate-950/20 border-y border-slate-200 dark:border-white/5 py-3 shadow-sm rounded-t-lg">
+                {visibleWeekIndices.map((idx, i) => (
+                    <div key={idx} className={cn(
+                        "flex flex-col items-center justify-center border-r border-slate-200 dark:border-white/5 last:border-r-0 px-2",
+                        i === 0 ? "bg-white dark:bg-transparent shadow-sm rounded-lg mx-2 border border-slate-200 dark:border-transparent py-1" : ""
+                    )}>
+                        <span className={cn(
+                            "text-[10px] uppercase tracking-widest mb-0.5 font-bold",
+                            i === 0 ? "text-agri-green-700 dark:text-agri-gold-400" : "text-slate-500"
                         )}>
-                            <span className={cn(
-                                "text-[10px] uppercase tracking-widest mb-0.5 font-bold",
-                                i === 0 ? "text-agri-green-700 dark:text-agri-gold-400" : "text-slate-500"
-                            )}>
-                                Semana {idx + 1}
-                            </span>
-                            <span className={cn(
-                                "text-base font-black uppercase tracking-tight",
-                                i === 0 ? "text-slate-900 dark:text-white" : "text-slate-700 dark:text-slate-300"
-                            )}>
-                                {getWeekLabel(idx)}
-                            </span>
+                            Semana {idx + 1}
+                        </span>
+                        <span className={cn(
+                            "text-base font-black uppercase tracking-tight",
+                            i === 0 ? "text-slate-900 dark:text-white" : "text-slate-700 dark:text-slate-300"
+                        )}>
+                            {getWeekLabel(idx)}
+                        </span>
+                    </div>
+                ))}
+            </div>
+
+            {/* Régua Fenológica — Clean, Solid, Corporate */}
+            <div className="relative grid grid-cols-6 gap-0 pl-1 pr-2 mb-4 py-3 bg-white dark:bg-slate-950/40 border-b border-x border-slate-200 dark:border-white/5 rounded-b-lg shadow-sm">
+                {/* Connecting horizontal line - Stronger definition */}
+                <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-slate-200 dark:bg-slate-700 -translate-y-1/2 z-0" />
+
+                {visibleWeekIndices.map((weekIdx) => {
+                    const stage = getStageForWeek(weekIdx, plantingWeek);
+                    const stageStart = getStageStartingAt(weekIdx, plantingWeek);
+                    const isFirst = isFirstWeekOfStage(weekIdx, plantingWeek);
+                    const phase = stage?.phase || 'VEGETATIVA';
+                    const colors = getPhaseColors(phase);
+
+                    // Icon evolves through lifecycle
+                    const StageIcon = !stage ? Sprout
+                        : stage.phase === 'VEGETATIVA' ? Sprout
+                            : (stage.id === 'R1' || stage.id === 'R2') ? Flower2
+                                : Wheat;
+
+                    return (
+                        <div key={weekIdx} className="flex items-center justify-center relative z-10">
+                            {isFirst && stageStart ? (
+                                <div className={cn(
+                                    "flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-sm transition-all hover:scale-105 z-20",
+                                    "bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-700"
+                                )}>
+                                    {/* Active Stage Pill - Solid Corporate Green */}
+                                    <div className="flex items-center justify-center w-6 h-6 rounded-full bg-agri-green-700 text-white shadow-md">
+                                        <StageIcon size={14} />
+                                    </div>
+                                    <div className="flex flex-col leading-none">
+                                        <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                                            {stageStart.label}
+                                        </span>
+                                        <span className="text-[9px] text-slate-500 font-medium uppercase tracking-wider hidden xl:inline">
+                                            {stageStart.fullLabel}
+                                        </span>
+                                    </div>
+                                </div>
+                            ) : stage ? (
+                                <div className="z-10 bg-white dark:bg-slate-900 p-1 rounded-full border border-slate-100 dark:border-slate-800">
+                                    <div className={cn("w-2 h-2 rounded-full", "bg-slate-300 dark:bg-slate-600")} />
+                                </div>
+                            ) : (
+                                <div className="w-1.5 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800" />
+                            )}
                         </div>
-                    ))}
-                </div>
-
-                {/* Régua Fenológica */}
-                <div className="relative grid grid-cols-6 gap-0 pl-1 pr-2 py-3 bg-white dark:bg-transparent">
-                    {/* Connecting horizontal line - Stronger definition */}
-                    <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-slate-100 dark:bg-slate-700 -translate-y-1/2 z-0" />
-
-                    {visibleWeekIndices.map((weekIdx) => {
-                        const stage = getStageForWeek(weekIdx, plantingWeek);
-                        const stageStart = getStageStartingAt(weekIdx, plantingWeek);
-                        const isFirst = isFirstWeekOfStage(weekIdx, plantingWeek);
-                        const phase = stage?.phase || 'VEGETATIVA';
-                        const colors = getPhaseColors(phase);
-
-                        // Icon evolves through lifecycle
-                        const StageIcon = !stage ? Sprout
-                            : stage.phase === 'VEGETATIVA' ? Sprout
-                                : (stage.id === 'R1' || stage.id === 'R2') ? Flower2
-                                    : Wheat;
-
-                        return (
-                            <div key={weekIdx} className="flex items-center justify-center relative z-10">
-                                {isFirst && stageStart ? (
-                                    <div className={cn(
-                                        "flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-sm transition-all hover:scale-105 z-20",
-                                        "bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-700"
-                                    )}>
-                                        {/* Active Stage Pill - Solid Corporate Green */}
-                                        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-agri-green-700 text-white shadow-md">
-                                            <StageIcon size={14} />
-                                        </div>
-                                        <div className="flex flex-col leading-none">
-                                            <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                                                {stageStart.label}
-                                            </span>
-                                            <span className="text-[9px] text-slate-500 font-medium uppercase tracking-wider hidden xl:inline">
-                                                {stageStart.fullLabel}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ) : stage ? (
-                                    <div className="z-10 bg-white dark:bg-slate-900 p-1 rounded-full border border-slate-100 dark:border-slate-800">
-                                        <div className={cn("w-2 h-2 rounded-full", "bg-slate-300 dark:bg-slate-600")} />
-                                    </div>
-                                ) : (
-                                    <div className="w-1.5 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800" />
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
+                    );
+                })}
             </div>
 
             <DndContext
@@ -316,7 +312,7 @@ export function Timeline() {
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
             >
-                <div className="flex-1 overflow-y-scroll custom-scrollbar pb-20 pr-2 space-y-6">
+                <div className="flex-1 overflow-y-auto pb-20 pr-2 space-y-6">
                     {validOperations.map(opType => {
                         const laneEvents = events.filter(e => e.operationType === opType);
                         return (
@@ -345,7 +341,7 @@ export function Timeline() {
             {/* Footer Fixo: Resumo de Valor e ROI */}
             <div className="sticky bottom-0 z-50 mt-auto">
                 <div className="border-t border-border dark:border-white/10 bg-white dark:bg-slate-950/80 dark:glass-panel dark:backdrop-blur-xl p-4 flex items-center justify-between rounded-t-xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] dark:shadow-2xl">
-                    <div className="flex items-center gap-8 pl-12">
+                    <div className="flex items-center gap-8">
                         <div>
                             <span className="text-[10px] uppercase text-muted-foreground dark:text-slate-500 font-bold tracking-wider">Investimento Total</span>
                             <div className="text-2xl font-bold text-foreground dark:text-white flex items-baseline gap-1">

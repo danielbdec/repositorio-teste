@@ -110,26 +110,21 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
                 <PremiumCard
                     disableAnimation={isOverlay}
                     className={cn(
-                        "p-0 overflow-hidden",
-                        event.operationType === 'PLANTIO_MECANIZADO' && "border-l-4 border-l-agri-green-500",
-                        isOver && "ring-2 ring-agri-green-500 scale-105"
+                        "p-0 overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 shadow-sm hover:shadow-md transition-all",
+                        event.operationType === 'PLANTIO_MECANIZADO' && "border-l-4 border-l-agri-green-700 dark:border-l-agri-green-500",
+                        isOver && "ring-2 ring-agri-green-700 scale-105"
                     )}
                     onClick={(e: React.MouseEvent) => {
                         e.stopPropagation();
                         onEdit?.(event);
                     }}
                 >
-                    {/* DAE Indicator Strip */}
-                    <div className={cn(
-                        "flex items-center gap-2 px-3 py-1.5 text-[10px] font-mono border-b backdrop-blur-sm",
-                        stage?.phase === 'REPRODUTIVA'
-                            ? "bg-amber-500/10 border-amber-500/10 text-amber-200"
-                            : "bg-green-500/10 border-green-500/10 text-green-200"
-                    )}>
-                        <span className="font-bold tracking-wider">DAE {dae > 0 ? dae : '—'}</span>
-                        <span className="opacity-30">|</span>
-                        <span className={cn("font-semibold", phaseColors.text)}>{stageLabel}</span>
-                        {phaseFull && <span className="opacity-50 hidden sm:inline">· {phaseFull}</span>}
+                    {/* DAE Indicator Strip - Clean & Corporate (No colored background) */}
+                    <div className="flex items-center gap-2 px-3 py-1.5 text-[10px] font-mono border-b border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-white/5">
+                        <span className="font-bold tracking-wider text-slate-500 dark:text-slate-400">DAE {dae > 0 ? dae : '—'}</span>
+                        <span className="opacity-20 text-slate-400">|</span>
+                        <span className={cn("font-bold", phaseColors.text)}>{stageLabel}</span>
+                        {phaseFull && <span className="text-slate-400 dark:text-slate-500 hidden sm:inline font-medium">· {phaseFull}</span>}
                     </div>
 
                     <div className="p-3">
@@ -137,20 +132,20 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
                         <div className="flex justify-between items-center mb-2">
                             <Badge
                                 variant="outline"
-                                className={cn("text-[9px] px-2 py-0.5 h-auto border font-medium tracking-wide rounded-md", getCategoryStyles(protocol.category))}
+                                className="text-[9px] px-2 py-0.5 h-auto border font-bold tracking-wide rounded-md bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700"
                             >
                                 {protocol.category}
                             </Badge>
 
                             <div className="flex items-center gap-2">
                                 {onEdit && (
-                                    <button className="text-slate-500 hover:text-white transition-colors p-1 hover:bg-white/5 rounded"
+                                    <button className="text-muted-foreground dark:text-slate-500 hover:text-foreground dark:hover:text-white transition-colors p-1 hover:bg-secondary dark:hover:bg-white/5 rounded"
                                         aria-label="Editar"
                                         onClick={(e: React.MouseEvent) => { e.stopPropagation(); onEdit(event); }}>
                                         <Eye size={12} />
                                     </button>
                                 )}
-                                <div className="bg-slate-950/40 p-1.5 rounded-full border border-white/5 shadow-inner">
+                                <div className="bg-secondary dark:bg-slate-950/40 p-1.5 rounded-full border border-border dark:border-white/5 shadow-inner">
                                     {getApplicationIcon()}
                                 </div>
                             </div>
@@ -158,24 +153,24 @@ export function EventCard({ event, onEdit, isOverlay = false }: EventCardProps) 
 
                         {/* Main Content */}
                         <div className="mb-3 space-y-1">
-                            <h4 className="font-bold text-sm text-white leading-tight truncate tracking-tight" title={productSku}>
+                            <h4 className="font-bold text-sm text-foreground dark:text-white leading-tight truncate tracking-tight" title={productSku}>
                                 {productSku}
                             </h4>
-                            <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                            <div className="flex items-center gap-1.5 text-xs text-muted-foreground dark:text-slate-400">
                                 <span className="truncate max-w-[100px]" title={protocol.target}>{protocol.target}</span>
                                 {doseLabel && (
                                     <>
-                                        <span className="w-1 h-1 rounded-full bg-slate-600" />
-                                        <span className="font-mono text-slate-300 bg-slate-800/50 px-1 py-0.5 rounded text-[10px]">{doseLabel}</span>
+                                        <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600" />
+                                        <span className="font-mono text-foreground dark:text-slate-300 bg-secondary dark:bg-slate-800/50 px-1 py-0.5 rounded text-[10px]">{doseLabel}</span>
                                     </>
                                 )}
                             </div>
                         </div>
 
                         {/* Footer: Custo */}
-                        <div className="pt-2 border-t border-white/5 flex justify-end items-center">
+                        <div className="pt-2 border-t border-border dark:border-white/5 flex justify-end items-center">
                             <div className="flex items-baseline gap-1">
-                                <span className="text-[10px] text-slate-500 uppercase tracking-widest">Custo</span>
+                                <span className="text-[10px] text-muted-foreground dark:text-slate-500 uppercase tracking-widest">Custo</span>
                                 <span className="text-sm font-bold text-gradient-gold">
                                     R$ {totalCost.toFixed(0)}
                                 </span>

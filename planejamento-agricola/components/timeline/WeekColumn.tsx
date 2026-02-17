@@ -42,28 +42,32 @@ export function WeekColumn({ weekIndex, operationType, events, isOverlay, onEdit
         <div
             ref={setNodeRef}
             className={cn(
-                "min-h-[120px] p-2 border-r border-border/20 transition-colors relative",
+                "min-h-[120px] p-2 border-r border-slate-200 dark:border-white/5 transition-colors relative",
+                // Alternating Column Background (Light Mode only)
+                weekIndex % 2 === 0 ? "bg-slate-50/50 dark:bg-transparent" : "bg-white dark:bg-transparent",
+
                 // Vertical phase indicator (left border)
                 phaseColors && stage?.phase === 'REPRODUTIVA'
                     ? "border-l-2 border-l-amber-500/20"
-                    : "border-l-2 border-l-green-500/10",
+                    : "border-l-[1px] border-l-slate-200 dark:border-l-white/5",
                 // Valid Drop Styling
-                isOver && !isLocked && isDropValid && "bg-agri-green-500/10 border-agri-green-500/50",
+                isOver && !isLocked && isDropValid && "bg-agri-green-50 dark:bg-agri-green-500/10 border-agri-green-700/50",
                 // Invalid Drop Styling
-                isOver && !isLocked && !isDropValid && "bg-red-500/10 border-red-500/50 cursor-not-allowed",
+                isOver && !isLocked && !isDropValid && "bg-red-50/80 dark:bg-red-500/10 border-red-500/50 cursor-not-allowed",
                 // Locked styling
-                isLocked && "bg-slate-950/40 border-slate-800/50 cursor-not-allowed",
+                isLocked && "bg-slate-100/80 dark:bg-slate-950/40 border-slate-200 dark:border-white/5 cursor-not-allowed",
             )}
         >
             {/* Indicador visual de Semana */}
-            <div className="absolute inset-0 pointer-events-none opacity-5 flex items-center justify-center font-bold text-2xl uppercase tracking-widest select-none">
+            {/* Indicador visual de Semana - Visible & Harmonious */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center font-black text-3xl uppercase tracking-widest select-none text-slate-100 dark:text-slate-800/60 z-0">
                 SEMANA {weekIndex + 1}
             </div>
 
             {/* Lock Indicator */}
             {isLocked && (
                 <div className="absolute inset-0 flex items-center justify-center z-0 opacity-10 pointer-events-none">
-                    <Lock size={32} className="text-slate-500" />
+                    <Lock size={32} className="text-muted-foreground dark:text-slate-500" />
                 </div>
             )}
 

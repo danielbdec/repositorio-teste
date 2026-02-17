@@ -16,22 +16,10 @@ export default function Home() {
         <div className="relative z-10 flex-1 flex flex-col p-6 h-full">
           <header className="mb-6 flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-3 mb-1">
-                <h1 className="text-3xl font-normal text-slate-600 dark:text-slate-300 tracking-tight">
-                  Planejamento
-                </h1>
-                <div className="flex items-center gap-1.5 px-3 py-1 bg-agri-green-50 dark:bg-agri-green-900/20 rounded-lg border border-agri-green-100 dark:border-agri-green-800/30">
-                  <span className="text-3xl font-bold text-agri-green-700 dark:text-agri-green-400 tracking-tight">
-                    2026
-                  </span>
-                  <span className="h-2 w-2 rounded-full bg-agri-gold-500 animate-pulse" />
-                </div>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground text-xs font-semibold tracking-widest uppercase">
-                <span className="text-agri-green-700 dark:text-agri-green-400">Fazenda Santa Fé</span>
-                <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700" />
-                <span>Soja Safra 25/26</span>
-              </div>
+              <h1 className="text-4xl font-extrabold tracking-tight text-foreground dark:text-white mb-1">
+                Planejamento <span className="text-primary font-black">2026</span> <Sprout size={14} className="text-agri-green-700 dark:text-green-500" />
+              </h1>
+              <p className="text-muted-foreground text-sm font-medium tracking-wide uppercase">Fazenda Santa Fé • Soja Safra 25/26</p>
             </div>
 
             <div className="flex gap-4 items-center">
@@ -41,7 +29,7 @@ export default function Home() {
             </div>
           </header>
 
-          <div className="flex-1 w-full min-h-0 bg-transparent overflow-hidden">
+          <div className="flex-1 w-full min-h-0 bg-card dark:bg-card/10 rounded-2xl border border-border dark:border-white/5 overflow-hidden shadow-sm dark:shadow-2xl">
             <Timeline />
           </div>
         </div>

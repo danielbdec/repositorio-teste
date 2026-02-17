@@ -49,7 +49,7 @@ export function Swimlane({ operationType, events, visibleWeeks, onEdit }: Swimla
 
 
     return (
-        <div className="relative border border-border dark:border-white/10 rounded-xl overflow-hidden bg-white dark:bg-card/40 dark:bg-gradient-to-br dark:from-white/5 dark:to-white/0 backdrop-blur-none dark:backdrop-blur-md shadow-sm dark:shadow-2xl mb-4 mx-1">
+        <div className="relative border border-border dark:border-white/10 rounded-xl overflow-hidden bg-white dark:bg-card/40 dark:bg-gradient-to-br dark:from-white/5 dark:to-white/0 backdrop-blur-none dark:backdrop-blur-md shadow-sm dark:shadow-lg mb-4">
             <div className="relative group">
                 {/* Background com gradiente sutil no hover (Apenas Dark Mode) */}
                 <div
@@ -103,7 +103,7 @@ export function Swimlane({ operationType, events, visibleWeeks, onEdit }: Swimla
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <div className="grid grid-cols-6 divide-x divide-border/20 dark:divide-white/5 border-t border-border/20 dark:border-white/5">
+                            <div className="grid grid-cols-6 divide-x divide-border/20 border-t border-border/20">
                                 {visibleWeeks.map((weekIndex) => {
                                     const weekEvents = events.filter(e => e.weekIndex === weekIndex);
                                     const isLocked = weekIndex < 2; // Mock Logic: First 2 weeks are locked
